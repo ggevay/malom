@@ -1,0 +1,43 @@
+﻿*** Release Notes for Malom 1.1.0 ***
+/2018. March 29./
+
+- The major new feature is the position setup mode: You can set up an arbitrary position directly (without playing to it from the starting position). This is useful if you would like to analyze a specific position. (Game menu -> Set Up Position)
+
+- By default, the computer player is now set to “Combined” instead of “Perfect”, where the heuristic AI and the database-based AI work together. (This is better than just the database-based AI alone, in that it is harder to achieve a draw against it.) (Note: the heuristic AI is available only for the standard game variant.)
+
+- Automatically fall back to the heuristic AI when the database is not found at program startup.
+
+- The Advisor now shows the optimal moves better, by drawing a yellow line for sliding and jumping moves. In the old version, the Advisor highlighted only the target squares, but now you can also see which stones to move.
+
+- The Advisor now highlights optimal stone-taking moves as well.
+
+- Improved some texts on the GUI.
+
+- The program no longer exits when answering “no” to the message box at the end of a game.
+
+
+Minor improvements:
+
+- “Combined” player moves immediately when there is only one optimal move.
+
+- Show perfect evaluation in stone taking positions as well.
+
+- Added option for whether to show the number of moves since the last irreversible move (related to the automatic draw in 50 irreversible moves rule) in the status bar.
+
+- Made the hard limit of thinking time a factor of the soft limit in the heuristic AI. (In the old version the hard limit was hardcoded to 8 seconds, now it is 10*soft+0.2 seconds.)
+
+- Better error handling.
+
+- Minor adjustments to the board drawing.
+
+- Fixed some minor bugs.
+
+
+
+*** Release Notes for Malom 1.0.1 ***
+/2016. February 8./
+
+Now it is possible to run the program on computers with CPUs that don’t support SSE4 (POPCNT).
+
+Fixed some minor bugs.
+

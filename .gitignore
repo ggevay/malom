@@ -1,0 +1,11 @@
+ipch/
+Debug/
+Release/
+Opt_Debug/
+obj/
+*.sdf
+*.opensdf
+*.psess
+*.suo
+*.vsp
+*.exe

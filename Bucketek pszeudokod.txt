@@ -1,0 +1,63 @@
+!!! Ez nem annyira up to date...
+
+
+
+
+using sec_val = short int;
+
+val
+	sec_val key1;
+	int key2; //nem erdemes short intre venni, mert ez csak interface, se az evalban, se a queue-ban nem ez van tenylegesen letarolva
+
+queue_elem
+	short_id sid;
+	int hash;
+	val val;
+	
+
+big_bucket_elem
+	short_id sid;
+	int hash;
+	int key2;
+	//az elso kulcs a fajlnevbol adodik
+
+small_bucket_elem	
+	short_id sid;
+	int hash;
+	
+big_bucket_writer
+	push(big_bucket_elem)
+	//a konstruktor csak elmenti a valt, es az elso push hozza letre a fajlt es a puffert (a lyukak miatt)
+	
+
+bucket_writer_mgr
+	pn_vector<big_bucket> buckets;
+	void push(queue_elem)
+	//letrehozza a mappat
+	
+	
+bucket_reader_mgr
+	//a bbwm-bol olvassa ki, hogy mely bucketek lettek tenylegesen letrehozva (a lyukak miatt kell ez)
+	
+big_bucket_reader
+	//szetvodroz a small_bucket_writer_mgr hasznalataval,
+	//aztan letrehoz egy small_bucket_reader_mgr-t, es azzal kiolvassa.
+	//Ha nem letezik a vodre, akkor rogton endet ad vissza.
+	pop
+		small_bucket_reader_mgr.pop
+
+small_bucket_writer
+	push
+
+small_bucket_reader
+	pop
+	
+//ezeket olvasszuk be a big_bucket_readerbe
+//small_bucket_writer_mgr
+//small_bucket_reader_mgr
+
+abstract_queue
+	push(hash, wms)
+	queue_elem pop()
+	//a konstruktor megkapja a bbwm-et, es atadja a bbrm-nek, aki ebbol olvassa ki, hogy mely bucketek lettek tenylegesen letrehozva (a lyukak miatt kell ez)
+	
