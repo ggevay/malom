@@ -38,7 +38,7 @@ void init_sec_vals(){
 	fopen_s(&f, sec_val_fname.c_str(), "rt");
 	if(!f)
 		failwith(VARIANT_NAME".secval file not found.");
-	fscanf_s(f, "virt_loss_val: %d\nvirt_win_val: %d\n", &virt_loss_val, &virt_win_val);
+	fscanf_s(f, "virt_loss_val: %hd\nvirt_win_val: %hd\n", &virt_loss_val, &virt_win_val);
 	assert(virt_win_val == -virt_loss_val);
 	int n;  fscanf_s(f, "%d\n", &n);
 	for(int i = 0; i < n; i++){

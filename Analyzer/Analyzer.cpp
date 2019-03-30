@@ -383,7 +383,7 @@ void calc_sec_vals(map<id, wdl> &sm){
 		fprintf_s(out, "%llf  %d  %s %d\n", sec_clus[i].first, sec_clus[i].first, sid.to_string().c_str(), sid.W+sid.WF-(sid.B+sid.BF));*/
 
 		auto sid = secs[i].second;
-		fprintf_s(out, "%llf  %s (%d)  %d\n", secs[i].first, secs[i].second.to_string().c_str(), sid.W + sid.WF - (sid.B + sid.BF), sec_val[i]);
+		fprintf_s(out, "%lf  %s (%d)  %d\n", secs[i].first, secs[i].second.to_string().c_str(), sid.W + sid.WF - (sid.B + sid.BF), sec_val[i]);
 	}
 	fclose(out);
 
@@ -400,7 +400,7 @@ void calc_sec_vals(map<id, wdl> &sm){
 
 	fopen_s(&out, sec_val_fname.c_str(), "wt");
 	fprintf_s(out, "virt_loss_val: %d\nvirt_win_val: %d\n", virt_loss_val, virt_win_val);
-	fprintf_s(out, "%u\n", secs.size());
+	fprintf_s(out, "%u\n", (unsigned int)secs.size());
 	for(unsigned int i = 0; i<secs.size(); i++){
 		auto id = secs[i].second;
 		fprintf_s(out, "%d %d %d %d  %d\n", id.W, id.B, id.WF, id.BF, sec_val[i]);

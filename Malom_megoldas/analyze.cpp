@@ -105,13 +105,13 @@ void analyze(id id){
 	FILE *out;
 	fopen_s(&out, (run_params.to_string()+".analyze"+FNAME_SUFFIX).c_str(), "w");
 	fprintf(out, "%d\n%lld\n%d\n%d %d %d\n", ma, maxval_board, sym_count, win_count, draw_count, loss_count);
-	fprintf(out, "%d\n", dist.size());
+	fprintf(out, "%d\n", (int)dist.size());
 	for(auto d: dist)
 		fprintf(out, "%d\n", d);
 #ifdef DD
 	fprintf(out, "%d %d\n", virt_loss_val, virt_win_val);
 	assert(akey1_dist.size() == virt_win_val - virt_loss_val + 1);
-	fprintf(out, "%d\n", akey1_dist.size());
+	fprintf(out, "%d\n", (int)akey1_dist.size());
 	for(auto x : akey1_dist)
 		fprintf(out, "%d\n", x);
 #endif
