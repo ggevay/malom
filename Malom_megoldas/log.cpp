@@ -35,7 +35,7 @@ string Log::fname, Log::fnamelogging, Log::donefname;
 void Log::setup_logfile(string fname, string extension){
 	Log::fname=fname;
 	log_to_file=true;
-	fnamelogging = fname + ".logging"FNAME_SUFFIX;
+	fnamelogging = fname + ".logging" + FNAME_SUFFIX;
 
 	//REL_ASSERT(mode!=-1);
 	//donefname=fname+(mode==verification_mode?".verificationlog":(mode==solution_mode?".solutionlog":".analyzelog"));

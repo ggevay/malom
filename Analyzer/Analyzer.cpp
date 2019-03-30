@@ -84,7 +84,7 @@ map<id, wdl> read_sm(long long &sym_count, long long &win_count, long long &loss
 		sym_count = 0; win_count = 0; loss_count = 0; draw_count = 0;
 		while((ent = readdir(dir)) != NULL) {
 			string f_name = ent->d_name;
-			if(starts_with(VARIANT_NAME, f_name) && ends_with(".analyze"FNAME_SUFFIX, f_name)){
+			if(starts_with(VARIANT_NAME, f_name) && ends_with(string(".analyze") + FNAME_SUFFIX, f_name)){
 				id s;
 				sscanf_s(f_name.c_str(), VARIANT_NAME"_%d_%d_%d_%d", &s.W, &s.B, &s.WF, &s.BF);
 

@@ -103,7 +103,7 @@ void analyze(id id){
 	
 	assert(sym_count + win_count + draw_count + loss_count == hash->hash_count);
 	FILE *out;
-	fopen_s(&out, (run_params.to_string()+".analyze"FNAME_SUFFIX).c_str(), "w");
+	fopen_s(&out, (run_params.to_string()+".analyze"+FNAME_SUFFIX).c_str(), "w");
 	fprintf(out, "%d\n%lld\n%d\n%d %d %d\n", ma, maxval_board, sym_count, win_count, draw_count, loss_count);
 	fprintf(out, "%d\n", dist.size());
 	for(auto d: dist)

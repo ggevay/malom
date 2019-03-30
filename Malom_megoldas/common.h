@@ -253,7 +253,7 @@ struct id{
 
 	string file_name(){
 		char b[255];
-		sprintf_s(b, "%s_%d_%d_%d_%d.sec"FNAME_SUFFIX, VARIANT_NAME, W, B, WF, BF);
+		sprintf_s(b, "%s_%d_%d_%d_%d.sec%s", VARIANT_NAME, W, B, WF, BF, FNAME_SUFFIX);
 		string r=string(b);
 		return r;
 	}
