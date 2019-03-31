@@ -59,7 +59,7 @@ Public Class Board
                         If SelectedMezo = -1 And s.T(mezo) = -1 And s.SetStoneCount(s.SideToMove) < MaxKSZ Then
                             M = New SetKorong(mezo)
                         Else
-                            If s.SetStoneCount(s.SideToMove) = MaxKSZ Or Rules.CurrVariant = RuleVariant.Lasker Then
+                            If s.SetStoneCount(s.SideToMove) = MaxKSZ Or Wrappers.Constants.Variant = Wrappers.Constants.Variants.lask Then
                                 If s.T(mezo) = s.SideToMove Then SelectMezo(mezo)
                                 If s.T(mezo) = -1 And SelectedMezo > -1 AndAlso (BoardGraph(SelectedMezo, mezo) Or s.FutureStoneCount(s.SideToMove) = 3) Then
                                     M = New MoveKorong(SelectedMezo, mezo)

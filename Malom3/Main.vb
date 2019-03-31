@@ -50,8 +50,7 @@ Public Class FrmMain
             Rules.Main = Me
             InitRules()
 
-            'SetVariant(RuleVariant.Standard)
-            SetVariantToWrapper()
+            SetVariant()
 
             AddHandler MnuPly1Human.Click, AddressOf ChangePlayerTypes
             AddHandler MnuPly1Computer.Click, AddressOf ChangePlayerTypes
@@ -119,13 +118,13 @@ Public Class FrmMain
         'Game = New Game(New ComputerPlayer(False), New ComputerPlayer(True), Me)
 
         If Sectors.HasDatabase Then
-            If Rules.CurrVariant = RuleVariant.Standard Then
+            If AlphaBetaAvailable() Then
                 Game = New Game(New HumanPlayer, New CombinedPlayer, Me)
             Else
                 Game = New Game(New HumanPlayer, New PerfectPlayer, Me)
             End If
         Else
-            If Rules.CurrVariant = RuleVariant.Standard Then
+            If AlphaBetaAvailable() Then
                 'MsgBox("Database files not found. Malom.exe should be in the same directory as the database files." & " Falling back to heuristic AI.", MsgBoxStyle.Exclamation)
                 Game = New Game(New HumanPlayer, New ComputerPlayer, Me)
             Else
@@ -175,41 +174,32 @@ Public Class FrmMain
         StatusStrip1.Items.AddRange(SetupModeControls.ToArray)
     End Sub
 
-    Public Sub GenerateLookuptables()
-        SetVariant(RuleVariant.Morabaraba)
+    'Azert kommenteztuk ki, mert nem tudjuk, hogy micsoda
+    'Public Sub GenerateLookuptables()
+    '    SetVariant(RuleVariant.Morabaraba)
 
-        Dim r As String = ""
+    '    Dim r As String = ""
 
-        'For i = 0 To 23
-        '    Dim adj As Integer = 0
-        '    For j = 1 To Rules.CSLTáblaGráf(i, 0)
-        '        adj = adj Or (1 << CSLTáblaGráf(i, j))
-        '    Next
-        '    r = r & adj & ","
-        'Next
+    '    'For i = 0 To 23
+    '    '    Dim adj As Integer = 0
+    '    '    For j = 1 To Rules.CSLTáblaGráf(i, 0)
+    '    '        adj = adj Or (1 << CSLTáblaGráf(i, j))
+    '    '    Next
+    '    '    r = r & adj & ","
+    '    'Next
 
-        For i = 0 To Rules.MillPos.GetUpperBound(0)
-            Dim mask As Integer = 0
-            For j = 0 To 2
-                mask = mask Or (1 << Rules.MillPos(i, j))
-            Next
-            r = r & mask & ","
-        Next
+    '    For i = 0 To Rules.MillPos.GetUpperBound(0)
+    '        Dim mask As Integer = 0
+    '        For j = 0 To 2
+    '            mask = mask Or (1 << Rules.MillPos(i, j))
+    '        Next
+    '        r = r & mask & ","
+    '    Next
 
-        Clipboard.SetText(r)
-    End Sub
+    '    Clipboard.SetText(r)
+    'End Sub
 
     'Set the variant to the same as wrappers.dll was built with
-    Private Sub SetVariantToWrapper()
-        Select Case Wrappers.Constants.Variant
-            Case Wrappers.Constants.Variants.std
-                SetVariant(RuleVariant.Standard)
-            Case Wrappers.Constants.Variants.lask
-                SetVariant(RuleVariant.Lasker)
-            Case Wrappers.Constants.Variants.mora
-                SetVariant(RuleVariant.Morabaraba)
-        End Select
-    End Sub
 
     Public Sub NewGame()
         'Debug.Write(New Diagnostics.StackTrace())
@@ -1055,7 +1045,7 @@ Public Class GameState
             StoneCount(1 - SideToMove) -= 1
             KLE = False
             'If szakasz = 2 And KorongCount(1 - SideToMove) = 2 Then
-            If StoneCount(1 - SideToMove) + MaxKSZ - SetStoneCount(1 - SideToMove) < 3 Then
+            If StoneCount(1 - SideToMove) + MaxKSZ - SetStoneCount(1 - SideToMove) < 3 Then 'TODO: refactor to call to FutureStoneCount
                 over = True
                 winner = SideToMove
             End If
@@ -1155,11 +1145,11 @@ Public Class GameState
 
         Debug.Assert(Not (phase = 1 And toBePlaced0 = 0 And toBePlaced1 = 0))
         Debug.Assert(Not (phase = 2 And (toBePlaced0 > 0 Or toBePlaced1 > 0)))
-        If Rules.CurrVariant <> RuleVariant.Lasker Then
+        If Wrappers.Constants.Variant <> Wrappers.Constants.Variants.lask And Not Wrappers.Constants.Extended Then
             If phase = 1 Then
                 '(Amugy ezek a feltetelek kizarnak nehany olyan allast is, amihez van adatbazisunk: a szintukrozes miatt pl. van adatbazis olyan allashoz, ahol fekete kovetkezik, es egyenlo a toBePlaced)
                 If toBePlaced0 <> toBePlaced1 - If(SideToMove = 0 Xor KLE, 0, 1) Then
-                    Return "If Black is to move in the placement phase, then the number of black stones to be placed should be one more than the number of white stones to placed. If White is to move in the placement phase, then the number of white and black stones to be placed should be equal. (Except in a stone taking position, where these conditions are reversed.)" & vbCrLf & vbCrLf & "Note: The Lasker variant doesn't have these constraints." & vbCrLf & vbCrLf & "Note: You can switch the side to move by the ""Switch STM"" button in position setup mode."
+                    Return "If Black is to move in the placement phase, then the number of black stones to be placed should be one more than the number of white stones to placed. If White is to move in the placement phase, then the number of white and black stones to be placed should be equal. (Except in a stone taking position, where these conditions are reversed.)" & vbCrLf & vbCrLf & "Note: The Lasker variant (and the extended solutions) doesn't have these constraints." & vbCrLf & vbCrLf & "Note: You can switch the side to move by the ""Switch STM"" button in position setup mode."
                 End If
             Else
                 Debug.Assert(phase = 2)

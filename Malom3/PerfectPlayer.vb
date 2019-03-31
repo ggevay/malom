@@ -81,7 +81,7 @@ Public Class PerfectPlayer
         secs = Sectors.getsectors()
 
         If UseWRGM Then
-            Debug.Assert(Rules.CurrVariant = RuleVariant.Standard)
+            Debug.Assert(Rules.AlphaBetaAvailable)
             Eng = New Engine(Nothing, Nothing, Nothing, True)
             Eng.InitEngine()
         End If
@@ -179,7 +179,7 @@ Public Class PerfectPlayer
     End Structure
 
     Private Function FutureKorongCount(s As GameState) As Integer
-        Return s.StoneCount(s.SideToMove) + Rules.MaxKSZ - s.SetStoneCount(s.SideToMove)
+        Return s.StoneCount(s.SideToMove) + Rules.MaxKSZ - s.SetStoneCount(s.SideToMove) 'TODO: refactor to call to FutureStoneCount
     End Function
 
     Private Function MakesMill(ByVal s As GameState, ByVal hon As Integer, ByVal hov As Integer) As Boolean
@@ -254,7 +254,7 @@ Public Class PerfectPlayer
     Public Function GetMoveList(ByVal s As GameState) As List(Of Move)
         Dim ms0, ms As List(Of Move)
         If Not s.KLE Then
-            If Rules.CurrVariant = RuleVariant.Standard Or Rules.CurrVariant = RuleVariant.Morabaraba Then
+            If Wrappers.Constants.Variant = Wrappers.Constants.Variants.std Or Wrappers.Constants.Variant = Wrappers.Constants.Variants.mora Then
                 If s.SetStoneCount(s.SideToMove) < Rules.MaxKSZ Then
                     ms0 = SetMoves(s)
                 Else

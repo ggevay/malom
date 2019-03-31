@@ -283,12 +283,20 @@ namespace Wrappers {
 			mora=MORABARABA,
 			lask=LASKER
 		};
+
 #ifdef DD
 		static const bool dd = true;
 #else
 		static const bool dd = false;
 #endif
+
 		static const bool FBD = FULL_BOARD_IS_DRAW;
+
+#ifdef FULL_SECTOR_GRAPH
+		static const bool Extended = true;
+#else
+		static const bool Extended = false;
+#endif
 	};
 
 	public ref class Helpers abstract sealed {

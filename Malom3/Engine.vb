@@ -108,7 +108,7 @@ Class Engine
 
 
     Public Sub InitEngine()
-        Debug.Assert(Wrappers.Constants.Variant = Wrappers.Constants.Variants.std)
+        Debug.Assert(Rules.AlphaBetaAvailable())
         Dim i, j, kov As Integer
         For i = 0 To 23
             For j = 1 To ALBoardGraph(i, 0)
