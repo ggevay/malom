@@ -58,10 +58,10 @@ public:
 		int i;
 	public:
 		iterator(pn_vector<T> &cont, int i) : cont(&cont), i(i) {}
-		T& operator*(){
+		T& operator*() const {
 			return (*cont)[i];
 		}
-		T* operator->(){
+		T* operator->() const {
 			return &(*cont)[i];
 		}
 		bool operator==(const iterator &o) const { return cont == o.cont && i == o.i; }

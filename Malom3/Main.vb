@@ -85,7 +85,7 @@ Public Class FrmMain
 
         Catch ex As TypeInitializationException
             If ex.InnerException IsNot Nothing AndAlso TypeOf ex.InnerException Is IO.FileNotFoundException Then
-                MsgBox("An error has happened while starting the program. Exiting." & vbCrLf & vbCrLf & "A possible cause of this error is that a required dll is not found in the same folder as the exe file. (Wrappers.dll, msvcp120.dll, msvcr120.dll)" & vbCrLf & vbCrLf & ex.ToString, MsgBoxStyle.Critical)
+                MsgBox("An error has happened while starting the program. Exiting." & vbCrLf & vbCrLf & "A possible cause of this error is that a required dll is not found in the same folder as the exe file (or in system folders). (Wrappers.dll, vcruntime140.dll, ucrtbase.dll, msvcp140.dll, concrt140.dll)" & vbCrLf & vbCrLf & ex.ToString, MsgBoxStyle.Critical)
             Else
                 MsgBox("An error has happened while starting the program. Exiting." & vbCrLf & ex.ToString, MsgBoxStyle.Critical)
             End If
