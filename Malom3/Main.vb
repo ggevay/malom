@@ -199,8 +199,6 @@ Public Class FrmMain
     '    Clipboard.SetText(r)
     'End Sub
 
-    'Set the variant to the same as wrappers.dll was built with
-
     Public Sub NewGame()
         'Debug.Write(New Diagnostics.StackTrace())
 
