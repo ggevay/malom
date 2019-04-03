@@ -380,17 +380,17 @@ Public Class Board
 
     Public Sub SwitchAdvisor()
         If Not Sectors.HasDatabase Then
-            frm.AdvisorToolStripMenuItem.Text = "Advisor"
+            frm.AdvisorToolStripMenuItem.Text = "&Advisor"
             MsgBox("Database files not found. Advisor is not available. Malom.exe should be in the same directory as the database files. (.sec or .sec2 files)", MsgBoxStyle.Exclamation)
             Return
         End If
 
         If Advisor Is Nothing Then
             Advisor = New PerfectPlayer
-            frm.AdvisorToolStripMenuItem.Text = "Advisor [ON]"
+            frm.AdvisorToolStripMenuItem.Text = "&Advisor [ON]"
         Else
             Advisor = Nothing
-            frm.AdvisorToolStripMenuItem.Text = "Advisor"
+            frm.AdvisorToolStripMenuItem.Text = "&Advisor"
         End If
         RedrawBoard()
     End Sub

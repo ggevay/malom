@@ -11,14 +11,14 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTitle("Malom")> 
 <Assembly: AssemblyDescription("Malom, a Nine Men's Morris (and variants) player and solver program.")> 
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("Malom")> 
-<Assembly: AssemblyCopyright("Copyright © 2007-2018  Gabor E. Gevay, Gabor Danner")> 
+<Assembly: AssemblyProduct("Malom")>
+<Assembly: AssemblyCopyright("Copyright © 2007-2019  Gabor E. Gevay, Gabor Danner")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("f547a7d4-dc65-447e-81cd-ee69726542a8")> 
+<Assembly: Guid("f547a7d4-dc65-447e-81cd-ee69726542a8")>
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.1.0.0")> 
-<Assembly: AssemblyFileVersion("1.1.0.0")> 
+<Assembly: AssemblyVersion("1.1.1.0")>
+<Assembly: AssemblyFileVersion("1.1.1.0")>

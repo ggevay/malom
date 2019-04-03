@@ -16,6 +16,6 @@
     <StartWorkingDirectory>D:\malom_data</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <StartWorkingDirectory>g:\malom_data</StartWorkingDirectory>
+    <StartWorkingDirectory>d:\malom_data</StartWorkingDirectory>
   </PropertyGroup>
 </Project>
