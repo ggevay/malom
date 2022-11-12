@@ -40,6 +40,7 @@ Public Class Sectors
                         For wf = 0 To Rules.MaxKSZ
                             For bf = 0 To Rules.MaxKSZ
                                 Dim fname = String.Format(Rules.VariantName & "_{0}_{1}_{2}_{3}.sec" & Constants.Fname_suffix, w, b, wf, bf)
+                                'Console.WriteLine("Looking for database file " & fname)
                                 Dim id As New id(w, b, wf, bf)
                                 If File.Exists(fname) Then
                                     sectors(id) = New Sector(id)
@@ -176,6 +177,20 @@ Public Class PerfectPlayer
         Public MoveType As MoveType
         Public WithTaking, OnlyTaking As Boolean 'A With-esben benne van a malombecsukas lepese is, az Only-sban pedig csak a levetel
         Public TakeHon As Integer
+
+        Public Function ToBitBoard() As Integer
+            If OnlyTaking Then
+                Return 1 << TakeHon
+            End If
+            Dim ret As Integer = 1 << hov
+            If MoveType = MoveType.SlideMove Then
+                ret += 1 << hon
+            End If
+            If WithTaking Then
+                ret += 1 << TakeHon
+            End If
+            Return ret
+        End Function
     End Structure
 
     Private Function FutureKorongCount(s As GameState) As Integer
@@ -374,7 +389,7 @@ Public Class PerfectPlayer
     End Function
 
     Private Shared rnd As New Random()
-    Private Function ChooseRandom(Of T)(ByVal l As List(Of T)) As T
+    Public Function ChooseRandom(Of T)(ByVal l As List(Of T)) As T
         Return l(rnd.Next(l.Count))
     End Function
 

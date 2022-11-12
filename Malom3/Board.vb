@@ -19,6 +19,9 @@
 ' along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+Imports System.Drawing
+Imports System.Windows.Forms
+
 Public Class Board
     Inherits PictureBox
     Private frm As FrmMain

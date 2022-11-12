@@ -20,9 +20,11 @@
 
 
 Imports System.Drawing
+Imports System.Windows.Forms
 
 Public Class FrmMain
 
+    Public Shared sing As FrmMain
     Public _Board As New Board(Me)
     Public Game As Game
     Public Settings As New FrmSettings
@@ -42,6 +44,13 @@ Public Class FrmMain
     Public SetupNoUpdateUI As Boolean = False
 
     Public PlayerTypeMenuItems As New List(Of ToolStripMenuItem)
+
+    Public Sub New()
+        sing = Me
+        ' auto-generated:
+        ' This call is required by the designer.
+        InitializeComponent()
+    End Sub
 
     <System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute>
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -437,7 +446,11 @@ Public Class FrmMain
         End Try
     End Sub
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        AboutBox.ShowDialog()
+        'AboutBox.ShowDialog()
+        If AboutBox.sing Is Nothing Then
+            Dim x = New AboutBox
+        End If
+        AboutBox.sing.ShowDialog()
     End Sub
 
 

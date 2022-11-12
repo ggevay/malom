@@ -95,7 +95,8 @@ Public Class FrmSettings
         Main.AdjustStatusStrip1Visibility()
         CalcNodeValues = ChkCalcNodeValues.Checked
         ShowEv = ChkShowEv.Checked
-        FrmMain.LblEv.Visible = ChkShowEv.Checked
+        'FrmMain.LblEv.Visible = ChkShowEv.Checked
+        FrmMain.sing.LblEv.Visible = ChkShowEv.Checked
         timelimit = UDIncTimeLimit.Value
         Wrappers.gui_eval_elem2.ignore_DD = ChkIgnoreDD.Checked
     End Sub

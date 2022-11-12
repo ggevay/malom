@@ -40,9 +40,9 @@ using namespace std;
 #define FULL_BOARD_IS_DRAW 1 //0 or 1
 
 
-#define FULL_SECTOR_GRAPH //extended solution //comment or uncomment
+//#define FULL_SECTOR_GRAPH //extended solution //comment or uncomment
 
-//#define DD //distinguish draws (ultra) //comment or uncomment
+#define DD //distinguish draws (ultra) //comment or uncomment
 
 //#define STONE_DIFF //value of sectors is the stone difference (otherwise, get values from the .secval file) //comment or uncomment
 

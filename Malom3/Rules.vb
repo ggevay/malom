@@ -18,6 +18,7 @@
 ' You should have received a copy of the GNU General Public License
 ' along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+Imports System.Windows.Forms
 
 Module Rules
     Public MillPos(,), StdLaskerMillPos(15, 2), MoraMillPos(19, 2) As Byte 'megadja az egyes StdLaskerMalomPozícióban részt vevő mezők sorszámát
@@ -210,6 +211,8 @@ Module Rules
     End Function
 
     Public Sub SetVariant()
+        ' part of this is copy-pasted in MalomAPI
+
         Select Case Wrappers.Constants.Variant
             Case Wrappers.Constants.Variants.std
                 MillPos = StdLaskerMillPos

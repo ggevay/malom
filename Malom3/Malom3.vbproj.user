@@ -13,9 +13,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
-    <StartWorkingDirectory>D:\malom_data</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Users\Gabor\Desktop\Malom\Malom_Standard_Ultra-strong_1.1.0\Std_DD_89adjusted\</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <StartWorkingDirectory>d:\malom_data</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Users\Gabor\Desktop\Malom\Malom_Standard_Ultra-strong_1.1.0\Std_DD_89adjusted\</StartWorkingDirectory>
   </PropertyGroup>
 </Project>

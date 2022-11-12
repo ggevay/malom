@@ -21,6 +21,15 @@
 
 Public NotInheritable Class AboutBox
 
+    Public Shared sing As AboutBox
+
+    Public Sub New()
+        sing = Me
+        ' auto-generated:
+        ' This call is required by the designer.
+        InitializeComponent()
+    End Sub
+
     Private Sub AboutBox_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Set the title of the form.
         Dim ApplicationTitle As String
