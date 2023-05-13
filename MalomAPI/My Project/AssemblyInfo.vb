@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("MalomAPI")>
-<Assembly: AssemblyCopyright("Copyright ©  2022")>
+<Assembly: AssemblyCopyright("Copyright © 2007-2023  Gabor E. Gevay, Gabor Danner")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

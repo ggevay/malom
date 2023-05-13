@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Malom")]
-[assembly: AssemblyCopyright("Copyright(C) 2007-2016  Gabor E. Gevay, Gabor Danner")]
+[assembly: AssemblyCopyright("Copyright(C) 2007-2023  Gabor E. Gevay, Gabor Danner")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

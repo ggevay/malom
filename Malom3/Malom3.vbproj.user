@@ -16,6 +16,6 @@
     <StartWorkingDirectory>C:\Users\Gabor\Desktop\Malom\Malom_Standard_Ultra-strong_1.1.0\Std_DD_89adjusted\</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <StartWorkingDirectory>C:\Users\Gabor\Desktop\Malom\Malom_Standard_Ultra-strong_1.1.0\Std_DD_89adjusted\</StartWorkingDirectory>
+    <StartWorkingDirectory>C:\Users\Gabor\Desktop\Malom\Malom_Standard_Ultra-strong_1.1.0_kibontva\Std_DD_89adjusted\</StartWorkingDirectory>
   </PropertyGroup>
 </Project>

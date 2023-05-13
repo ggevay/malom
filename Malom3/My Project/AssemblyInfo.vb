@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Malom, a Nine Men's Morris (and variants) player and solver program.")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("Malom")>
-<Assembly: AssemblyCopyright("Copyright © 2007-2019  Gabor E. Gevay, Gabor Danner")>
+<Assembly: AssemblyCopyright("Copyright © 2007-2023  Gabor E. Gevay, Gabor Danner")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
