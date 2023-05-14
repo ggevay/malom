@@ -1,0 +1,5 @@
+wc -l `find |grep "\.cpp\|\.h\|\.vb\|\.cs\|\.java" |grep -v "dirent\|Debug\|Release\|vbproj\|My\|Designer\|csproj"`
+
+
+Only C++:
+wc -l `find |grep "\.cpp\|\.h" |grep -v "dirent\|Debug\|Release\|vbproj\|My\|Designer\|csproj"`

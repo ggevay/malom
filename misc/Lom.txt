@@ -1,0 +1,56 @@
+#pragma once
+
+#include "stdafx.h"
+
+//Ez a class egy olyan tombot valosit meg, ami -1-nel nem kisebb egeszeket tud takarekosan tarolni.
+//A -1 es 253 kozotti elemeket egy byte-on tarolja, a 254-nel nagyobbakat pedig egy map-ben.
+
+class dyn_int_arr{
+	unsigned char *t;
+	map<int,int> em;
+
+public:
+	dyn_int_arr(int size);
+	int get(int i);
+	void set(int i, int v);
+	~dyn_int_arr();
+};
+
+
+
+
+
+
+
+
+
+
+#include "stdafx.h"
+
+#include "dyn_int_arr.h"
+
+dyn_int_arr::dyn_int_arr(int size) : t(new unsigned char[size]) {
+	memset(t,1,size);
+}
+
+int dyn_int_arr::get(int i){
+	if(t[i]!=255)
+		return (int)t[i]-1; //a -1 miatt el van csusztatva
+	else
+		return em[i]-1;
+}
+
+void dyn_int_arr::set(int i, int v){
+	v++; //a -1 miatti eltolas
+	if(v<255){
+		em.erase(i);
+		t[i]=v;
+	}else{
+		t[i]=255;
+		em[i]=v;
+	}
+}
+
+dyn_int_arr::~dyn_int_arr(){
+	delete[] t;
+}
