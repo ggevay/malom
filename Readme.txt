@@ -49,8 +49,8 @@ the strong solution's statistics, which is required for the
 ultra-strong solution.
 
 MalomAPI (VB.Net): Produces a dll that you can use to access the databases
-from an other program. See the Readme.txt in the MalomAPI directory for more
-details.
+from an other program. See the other Readme.txt in the MalomAPI directory for
+more details.
 
 
 2. common.h
