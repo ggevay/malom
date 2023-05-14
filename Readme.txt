@@ -1,5 +1,5 @@
 Malom, a Nine Men's Morris (and variants) player and solver program.
-Copyright (C) 2007-2014  Gabor E. Gevay, Gabor Danner
+Copyright (C) 2007-2023  Gabor E. Gevay, Gabor Danner
 
 See our webpage:
 http://compalg.inf.elte.hu/~ggevay/mills/index.php
@@ -9,9 +9,9 @@ For license information, see the “License (gpl-3.0).txt” file.
 You can read about the theory behind the program in our paper linked
 from our webpage.
 
-This is a Visual Studio 2013 solution. Express editions probably won’t
-work, because the projects are of different languages (but you can try
-compiling them separately). The program works on 64-bit Windows.
+This is a Visual Studio 2017 solution. If you have a newer Visual Studio,
+then we recommend upgrading the solution and the projects when opening the
+solution. The program works on 64-bit Windows.
 
 
 0. Rules
@@ -47,6 +47,10 @@ statistics that we didn't compute, then you should probably drop us an
 email.) It also calculates the values of subspaces (.secval file) from
 the strong solution's statistics, which is required for the
 ultra-strong solution.
+
+MalomAPI (VB.Net): Produces a dll that you can use to access the databases
+from an other program. See the Readme.txt in the MalomAPI directory for more
+details.
 
 
 2. common.h
