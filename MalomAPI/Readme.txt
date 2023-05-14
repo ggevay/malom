@@ -1,10 +1,10 @@
 Using MalomAPI.dll
 
-The database files and Wrappers.dll should be in the current working directory.
+To use the MalomAPI.dll, the database files and Wrappers.dll should be in the current working directory. When building Malom (instead of using downloaded binaries), you can find Wrappers.dll under the x64 directory.
 
 MalomAPI.dll is a 64-bit DLL.
 
-MalomAPI.dll provides the MalomSolutionAccess class. No need to instantiate the class, because all methods are static.
+MalomAPI.dll provides the MalomSolutionAccess class. There is no need to instantiate the class, because all methods are static.
 
 In the following description, “white” denotes the starting player, and “black” denotes the player that moves second.
 
@@ -30,7 +30,7 @@ If this increases the number of stones the player to move has, then that player 
 
 This function throws an exception if the arguments are illegal, or if the game has already ended.
 
-GetBestMoveNoException is a similar function that is useful if your interoperability library has trouble handling .NET exceptions. It has the same parameters as GetBestMove, but it never throws an exception. Its return value is almost the same as that of GetBestMove, but it returns 0 if there is an error. In this case, you can call GetLastError, which will return the error as a .NET String.
+GetBestMoveNoException is a similar function that is useful if you have trouble handling .NET exceptions (e.g., due to calling from a non-.NET language). It has the same parameters as GetBestMove, but it never throws an exception. Its return value is almost the same as that of GetBestMove, but it returns 0 if there is an error. In this case, you can call GetLastError, which will return the error as a .NET String.
 
 (None of our functions are thread-safe. This means that your program should not call our functions from different threads.)
 
