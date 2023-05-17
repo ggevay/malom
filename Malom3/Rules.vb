@@ -21,13 +21,13 @@
 Imports System.Windows.Forms
 
 Module Rules
-    Public MillPos(,), StdLaskerMillPos(15, 2), MoraMillPos(19, 2) As Byte 'megadja az egyes StdLaskerMalomPozícióban részt vevő mezők sorszámát
+    Public MillPos(,), StdLaskerMillPos(15, 2), MoraMillPos(19, 2) As Byte 'gives the sequence number of each field participating in StdLaskerMillPosition
     Public InvMillPos()(), StdLaskerInvMillPos(23)(), MoraInvMillPos(23)() As Integer 'ith element gives those indexes into MalomPoz where the ith field occurs
     Public BoardGraph(,), StdLaskerBoardGraph(24, 24), MoraBoardGraph(24, 24) As Boolean 'adjacency matrix
     Public ALBoardGraph(,), StdLaskerALBoardGraph(24, 4), MoraALBoardGraph(24, 4) As Byte 'adjacency list, 0th element is the number of neighbors
     Public VariantName As String
 
-    Public Const LastIrrevLimit = 50 'a flyordie-on 50 'hány lépés telhet el koronglevétel/folrakas nélkül, mielőtt döntetlennel véget érne a játék
+    Public Const LastIrrevLimit = 50 'on flyordie 50 'how many moves can pass without puck removal/folraker before the game ends in a draw
 
     Public Sub InitRules()
         StdLaskerMillPos(0, 0) = 1
@@ -61,9 +61,9 @@ Module Rules
         Dim kell As Boolean
         For i = 0 To 23 'mezőkön
             Dim l As New List(Of Integer)
-            For j = 0 To 15 'StdLaskerMalomPozíciókon
+            For j = 0 To 15 'StdLaskerMillPositions
                 kell = False
-                For k = 0 To 2 'StdLaskerMalomPozíció mezőin
+                For k = 0 To 2 'StdLaskerMillPosition fields
                     If StdLaskerMillPos(j, k) = i Then kell = True
                 Next
                 If kell Then
@@ -180,7 +180,7 @@ Module Rules
             End If
         Next
     End Function
-    Public Function TudLepni(ByVal s As GameState) As Boolean 'megmondja, hogy a soron következő játékos tud-e lépni '(doesn't handle the KLE case)
+    Public Function YouCanMove(ByVal s As GameState) As Boolean 'tells whether the next player can move '(doesn't handle the KLE case)
         Debug.Assert(Not s.KLE)
         If s.SetStoneCount(s.SideToMove) = MaxKSZ And s.StoneCount(s.SideToMove) > 3 Then
             For i = 0 To 23
