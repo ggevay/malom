@@ -180,7 +180,7 @@ Module Rules
             End If
         Next
     End Function
-    Public Function TudLépni(ByVal s As GameState) As Boolean 'megmondja, hogy a soron következő játékos tud-e lépni '(doesn't handle the KLE case)
+    Public Function TudLepni(ByVal s As GameState) As Boolean 'megmondja, hogy a soron következő játékos tud-e lépni '(doesn't handle the KLE case)
         Debug.Assert(Not s.KLE)
         If s.SetStoneCount(s.SideToMove) = MaxKSZ And s.StoneCount(s.SideToMove) > 3 Then
             For i = 0 To 23
