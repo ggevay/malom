@@ -79,6 +79,21 @@ Public Class MalomSolutionAccess
         Return lastError.ToString
     End Function
 
+    ' This is an alternative way to expose GetBestMove's functionality. This is possible to call from native C++ code, by using ExecuteInDefaultAppDomain,
+    ' which can call only functions that have a single String argument and return an Integer.
+    ' Args: One String argument, which contains space-separated values, which are forwarded to GetBestMove. The Boolean argument is represented as 0=false, 1=true.
+    ' If any .Net exception happens inside, it catches the exception, and returns 0. In this case, it prints the error message to the Standard Error.
+    Public Shared Function GetBestMoveStr(args As String) As Integer
+        Try
+            Dim argsSplit = args.Split(" ")
+            Const numArgs = 6
+            If argsSplit.Length <> numArgs Then Throw New ArgumentException("Invalid number of arguments after splitting the string. Instead of " & numArgs & ", got " & argsSplit.Length & " arguments.")
+            Return GetBestMove(argsSplit(0), argsSplit(1), argsSplit(2), argsSplit(3), argsSplit(4), argsSplit(5) <> "0")
+        Catch ex As Exception
+            Console.Error.WriteLine("Fatal exception: " & ex.ToString)
+            Return 0 ' This could be an exception throwing, but then HRESULT would get weird values, because some .Net exceptions are converted to specific error codes, and it would be hard to detect all of them.
+        End Try
+    End Function
 
 
     Private Shared Sub InitializeIfNeeded()
