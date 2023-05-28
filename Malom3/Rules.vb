@@ -100,7 +100,7 @@ Module Rules
                 If StdLaskerBoardGraph(i, j) = True Then StdLaskerBoardGraph(j, i) = True
             Next
         Next
-        For i = 1 To 24
+        For i = 0 To 23
             StdLaskerALBoardGraph(i, 0) = 0
         Next
         For i = 0 To 23
@@ -160,7 +160,7 @@ Module Rules
                 If MoraBoardGraph(i, j) = True Then MoraBoardGraph(j, i) = True
             Next
         Next
-        For i = 1 To 24
+        For i = 0 To 23
             MoraALBoardGraph(i, 0) = 0
         Next
         For i = 0 To 23
