@@ -191,8 +191,8 @@ Public Class FrmMain
 
     '    'For i = 0 To 23
     '    '    Dim adj As Integer = 0
-    '    '    For j = 1 To Rules.CSLTáblaGráf(i, 0)
-    '    '        adj = adj Or (1 << CSLTáblaGráf(i, j))
+    '    '    For j = 1 To Rules.CSLTableGraph(i, 0)
+    '    '        adj = adj Or (1 << CSLTableGraph(i, j))
     '    '    Next
     '    '    r = r & adj & ","
     '    'Next
@@ -670,8 +670,8 @@ Public Class Game
                 Return
             End If
 
-            p.Quit() 'p-t kiléptetjük, hátha esetleg benne volt egy játékban (pl. NewGame-nél az ezelõttiben)
-            If _Ply(i) IsNot Nothing Then _Ply(i).Quit() 'kiléptetjük azt a játékost, akinek a helyére p jön
+            p.Quit() 'we exit p to see if it was in a game (e.g. NewGame in the previous one)
+            If _Ply(i) IsNot Nothing Then _Ply(i).Quit() 'the player replaced by p is kicked out
             _Ply(i) = p
             If i = 0 Then 'set menus
                 frm.MnuPly1Human.Checked = p.GetType() = GetType(HumanPlayer)
@@ -701,7 +701,7 @@ Public Class Game
     End Sub
 
     <System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute>
-    Public Sub MakeMove(ByVal M As Move) 'a player objektumok hívják meg, amikor lépni szeretnének
+    Public Sub MakeMove(ByVal M As Move) 'called by player objects when they want to move
         Try
             'Debug.Print(Microsoft.VisualBasic.Timer & " MakeMove, sidetomove: " & s.SideToMove) '
 
@@ -736,7 +736,7 @@ Public Class Game
     Private Sub NotifyPlayer(ByVal i As Integer)
         If Not s.over Then
             If s.SideToMove = i Then
-                frm.BeginInvoke(New DToMove(AddressOf Ply(i).ToMove), s) 'itt azért kell BeginInvoke-ot használni, mert azt szeretnénk, hogy a hívó elvégezhesse a dolgát, mielõtt a játékos értesül róla, hogy lépnie kell
+                frm.BeginInvoke(New DToMove(AddressOf Ply(i).ToMove), s) 'Here we need to use BeginInvoke because we would like the caller to be able to finish their work before the player is informed that they need to move.
             Else
                 frm.BeginInvoke(New DToMove(AddressOf Ply(i).OppToMove), s)
             End If
@@ -807,11 +807,11 @@ Public Class Game
             If TypeOf Ply(s.SideToMove) Is HumanPlayer Then
                 If s.KLE Then frm.LblKov.Text = "Take a stone."
                 If s.phase = 1 Then
-                    'Dim pr = MaxKSZ - s.FölrakottKorongCount(s.SideToMove)
+                    'Dim pr = MaxKSZ - s.StackedPuckCount(s.SideToMove)
                     'If pr > 0 Then
-                    '    frm.LblFölrak.Text = pr & " stones to place."
+                    '    frm.LblUpload.Text = pr & " stones to place."
                     'Else
-                    '    frm.LblFölrak.Text = "No more stones to place."
+                    '    frm.LblUpload.Text = "No more stones to place."
                     'End If
                     frm.LblSetnum.Text = MaxKSZ - s.SetStoneCount(0) & ", " & MaxKSZ - s.SetStoneCount(1) & " stones to place."
                 Else
@@ -843,8 +843,8 @@ Public Class Game
         Dim tmp = current
         Do
             current = current.Previous
-        Loop While (current.Previous IsNot Nothing AndAlso Not TypeOf Ply(current.Value.SideToMove) Is HumanPlayer) 'addig vonunk vissza, hogy ne gép következzen
-        If TypeOf Ply(current.Value.SideToMove) Is ComputerPlayer Then 'ha nem sikerült, akkor visszaállítjuk az eredeti állapotot
+        Loop While (current.Previous IsNot Nothing AndAlso Not TypeOf Ply(current.Value.SideToMove) Is HumanPlayer) 'we withdraw until no machine follows
+        If TypeOf Ply(current.Value.SideToMove) Is ComputerPlayer Then 'if it failed, we restore the original state
             current = tmp
             Return False
         Else
@@ -867,8 +867,8 @@ Public Class Game
         Dim tmp = current
         Do
             current = current.Next
-        Loop While (current.Next IsNot Nothing AndAlso Not TypeOf Ply(current.Value.SideToMove) Is HumanPlayer) 'addig megyünk elõre, hogy ne gép következzen
-        If TypeOf Ply(current.Value.SideToMove) Is ComputerPlayer Then 'ha nem sikerült, akkor visszaállítjuk az eredeti állapotot
+        Loop While (current.Next IsNot Nothing AndAlso Not TypeOf Ply(current.Value.SideToMove) Is HumanPlayer) 'we go forward until no machine follows
+        If TypeOf Ply(current.Value.SideToMove) Is ComputerPlayer Then 'if it failed, we restore the original state
             current = tmp
             Return False
         Else
@@ -981,15 +981,15 @@ Public Class Game
 End Class
 
 Public Class GameState
-    Public T(23) As Integer 'a tábla (-1: üres, 0: fehér korong, 1: fekete korong)
+    Public T(23) As Integer 'the board (-1: empty, 0: white piece, 1: black piece)
     Public phase As Integer = 1
     Public SetStoneCount(1) As Integer 'how many stones the players have set
     Public StoneCount(1) As Integer
-    Public KLE As Boolean 'koronglevétel jön-e
+    Public KLE As Boolean 'is there a puck removal coming?
     Public SideToMove As Integer
     Public MoveCount As Integer
     Public over As Boolean
-    Public winner As Integer '(-1, ha döntetlen)
+    Public winner As Integer '(-1, if a draw)
     Public block As Boolean
     Public LastIrrev As Integer
 
@@ -997,7 +997,7 @@ Public Class GameState
         Return StoneCount(p) + MaxKSZ - SetStoneCount(p)
     End Function
 
-    Public Sub New() 'játszma eleje
+    Public Sub New() 'start of game
         For i = 0 To 23
             T(i) = -1
         Next
@@ -1062,12 +1062,12 @@ Public Class GameState
             End If
             LastIrrev = 0
         End If
-        If (TypeOf M Is SetKorong Or TypeOf M Is MoveKorong) AndAlso Malome(M.hov, Me) > -1 And StoneCount(1 - SideToMove) > 0 Then 'ha malmot csinált a lépés es van az ellenfelnek korongja
+        If (TypeOf M Is SetKorong Or TypeOf M Is MoveKorong) AndAlso Malome(M.hov, Me) > -1 And StoneCount(1 - SideToMove) > 0 Then 'if he made a monkey, your move is your opponent's puck
             KLE = True
         Else
             SideToMove = 1 - SideToMove
-            If SetStoneCount(0) = MaxKSZ And SetStoneCount(1) = MaxKSZ And phase = 1 Then phase = 2 'korongmozgatásra váltás
-            If Not TudLépni(Me) Then
+            If SetStoneCount(0) = MaxKSZ And SetStoneCount(1) = MaxKSZ And phase = 1 Then phase = 2 'switching to disc movement
+            If Not YouCanMove(Me) Then
                 over = True
                 block = True
                 winner = 1 - SideToMove
@@ -1195,8 +1195,7 @@ Public Class GameState
                 End If
             End If
         End If
-
-        If Not KLE AndAlso Not TudLépni(Me) Then 'TudLépni doesn't handle the KLE case. However, we should always have a move in KLE, see the validity check above.
+        If Not KLE AndAlso Not YouCanMove(Me) Then 'YouCanMove doesn't handle the KLE case. However, we should always have a move in KLE, see the validity check above.
             over = True
             block = True
             winner = 1 - SideToMove
@@ -1215,10 +1214,10 @@ Public Class GameState
     End Function
 
 
-    Public Sub New(ByVal s As String) 'vágólapról beillesztéshez
+    Public Sub New(ByVal s As String) 'to paste from clipboard
         Dim ss() As String = s.Split(",")
         Try
-            If ss(33) = "malom" OrElse ss(34) = "malom" OrElse ss(35) = "malom" OrElse ss(37) = "malom2" Then 'tudni kell értelmezni a régebbi formátumokat is
+            If ss(33) = "malom" OrElse ss(34) = "malom" OrElse ss(35) = "malom" OrElse ss(37) = "malom2" Then 'you need to be able to interpret older formats as well
                 For i = 0 To 23
                     T(i) = ss(i)
                 Next
@@ -1229,7 +1228,7 @@ Public Class GameState
                 StoneCount(0) = ss(30)
                 StoneCount(1) = ss(31)
                 KLE = ss(32)
-                If ss(33) <> "malom" Then MoveCount = ss(33) Else MoveCount = 10 'csak azért 10, hogy ne 0 legyen, mert akkor nem gondolkodna a következõ két lépésnél, mert azt hinné, hogy a játék eleje van
+                If ss(33) <> "malom" Then MoveCount = ss(33) Else MoveCount = 10 'It's 10 just so it wouldn't be 0, because then it wouldn't think about the next two steps, because it would think that the game is just beginning.
                 If ss(33) <> "malom" AndAlso ss(34) <> "malom" Then LastIrrev = ss(34) Else LastIrrev = 0
                 If StoneCount(0) <> T.Count(Function(x) x = 0) Or StoneCount(1) <> T.Count(Function(x) x = 1) Then Throw New InvalidGameStateException(" Number of stones is incorrect.")
             Else
