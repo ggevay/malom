@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1500
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Malom_megoldas", "Malom_megoldas\Malom_megoldas.vcxproj", "{F77A30F9-3EB8-4748-9B06-4B2F8D694847}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Analyzer", "Analyzer\Analyzer.vcxproj", "{953104A5-7106-4468-9888-72D37CAE07CD}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MalomAPI", "MalomAPI\MalomAPI.vbproj", "{0F512A78-B6AF-40F9-93A6-AB72659A98DF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MalomAPI_cpp", "MalomAPI_cpp\MalomAPI_cpp.vcxproj", "{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -184,6 +186,36 @@ Global
 		{0F512A78-B6AF-40F9-93A6-AB72659A98DF}.Release|x64.Build.0 = Release|Any CPU
 		{0F512A78-B6AF-40F9-93A6-AB72659A98DF}.Release|x86.ActiveCfg = Release|Any CPU
 		{0F512A78-B6AF-40F9-93A6-AB72659A98DF}.Release|x86.Build.0 = Release|Any CPU
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Debug|Any CPU.Build.0 = Debug|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Debug|Mixed Platforms.Build.0 = Debug|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Debug|Win32.Build.0 = Debug|Win32
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Debug|x64.ActiveCfg = Debug|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Debug|x64.Build.0 = Debug|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Debug|x86.ActiveCfg = Debug|Win32
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Debug|x86.Build.0 = Debug|Win32
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Opt_Debug|Any CPU.ActiveCfg = Debug|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Opt_Debug|Any CPU.Build.0 = Debug|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Opt_Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Opt_Debug|Mixed Platforms.Build.0 = Debug|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Opt_Debug|Win32.ActiveCfg = Debug|Win32
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Opt_Debug|Win32.Build.0 = Debug|Win32
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Opt_Debug|x64.ActiveCfg = Debug|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Opt_Debug|x64.Build.0 = Debug|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Opt_Debug|x86.ActiveCfg = Debug|Win32
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Opt_Debug|x86.Build.0 = Debug|Win32
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Release|Any CPU.ActiveCfg = Release|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Release|Any CPU.Build.0 = Release|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Release|Mixed Platforms.ActiveCfg = Release|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Release|Mixed Platforms.Build.0 = Release|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Release|Win32.ActiveCfg = Release|Win32
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Release|Win32.Build.0 = Release|Win32
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Release|x64.ActiveCfg = Release|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Release|x64.Build.0 = Release|x64
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Release|x86.ActiveCfg = Release|Win32
+		{3D1BED67-7F9E-495C-B4AD-FD473286EC3F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
