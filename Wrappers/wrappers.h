@@ -175,12 +175,12 @@ namespace Wrappers {
 
 
 		static gui_eval_elem2 min_value(Sector ^s){
-			return gui_eval_elem2{ abs_min_value() - (s ? s->sval() : virt_unique_sec_val()), 0, s ? s->s : nullptr };
+			return gui_eval_elem2{ (sec_val)(abs_min_value() - (s ? s->sval() : virt_unique_sec_val())), 0, s ? s->s : nullptr };
 		}
 
 		static gui_eval_elem2 virt_loss_val(){ //vigyazat: csak KLE-ben mukodik jol, mert ugye ahhoz, hogy jol mukodjon, valami ertelmeset kene kivonni, de mi mindig virt_unique_sec_val-t vonunk ki
 			assert(::virt_loss_val);
-			return gui_eval_elem2{ ::virt_loss_val - virt_unique_sec_val(), 0, nullptr };
+			return gui_eval_elem2{ (sec_val)(::virt_loss_val - virt_unique_sec_val()), 0, nullptr};
 		}
 
 		static sec_val virt_unique_sec_val(){ //azert kell, hogy a KLE-s allasokban ne resetelodjon a tavolsag
