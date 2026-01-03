@@ -2,7 +2,7 @@
 ' Copyright(C) 2007-2016  Gabor E. Gevay, Gabor Danner
 ' 
 ' See our webpage (and the paper linked from there):
-' http://compalg.inf.elte.hu/~ggevay/mills/index.php
+' https://www.inf.u-szeged.hu/~danner/mills
 ' 
 ' 
 ' This program is free software: you can redistribute it and/or modify
@@ -436,7 +436,7 @@ Public Class FrmMain
     End Sub
 
     Private Sub WebsiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WebsiteToolStripMenuItem.Click
-        Process.Start("http://compalg.inf.elte.hu/~ggevay/mills/index.php")
+        Process.Start("https://www.inf.u-szeged.hu/~danner/mills")
     End Sub
     Private Sub ManualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ManualToolStripMenuItem.Click
         Try

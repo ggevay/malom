@@ -3,7 +3,7 @@
 Malom is a Nine Men's Morris, Lasker Morris, and Morabaraba program. It can play these games perfectly using large databases of game positions, and it can also compute these databases.
 Copyright (C) 2007-2023  Gabor E. Gevay, Gabor Danner
 
-See our [webpage](http://compalg.inf.elte.hu/~ggevay/mills/index.php).
+See our [webpage](https://www.inf.u-szeged.hu/~danner/mills).
 
 For license information, see the "License (gpl-3.0).txt" file.
 

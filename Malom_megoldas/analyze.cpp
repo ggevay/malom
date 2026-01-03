@@ -3,7 +3,7 @@ Malom, a Nine Men's Morris (and variants) player and solver program.
 Copyright(C) 2007-2016  Gabor E. Gevay, Gabor Danner
 
 See our webpage (and the paper linked from there):
-http://compalg.inf.elte.hu/~ggevay/mills/index.php
+https://www.inf.u-szeged.hu/~danner/mills
 
 
 This program is free software: you can redistribute it and/or modify
